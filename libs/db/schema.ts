@@ -4,15 +4,7 @@ import {
   text,
   primaryKey,
 } from "drizzle-orm/sqlite-core";
-import { createClient } from "@libsql/client";
-import { drizzle } from "drizzle-orm/libsql";
 import type { AdapterAccountType } from "next-auth/adapters";
-
-// const turso = createClient({
-//   url: "DATABASE_URL",
-//   authToken: "DATABASE_AUTH_TOKEN",
-// });
-// export const db = drizzle(turso);
 
 export const users = sqliteTable("user", {
   id: text("id")
@@ -92,10 +84,3 @@ export const authenticators = sqliteTable(
     }),
   })
 );
-
-// import { sql } from "drizzle-orm";
-// import { text, sqliteTable } from "drizzle-orm/sqlite-core";
-
-// export const fooTable = sqliteTable("foo", {
-//   bar: text("bar").notNull().default("Hey!"),
-// });
