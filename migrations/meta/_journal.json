@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1724297591754,
-      "tag": "0000_sudden_reaper",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1724297659723,
-      "tag": "0001_massive_longshot",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "6",
-      "when": 1725014178010,
-      "tag": "0002_bent_xorn",
+      "when": 1725015080911,
+      "tag": "0000_rich_saracen",
       "breakpoints": true
     }
   ]

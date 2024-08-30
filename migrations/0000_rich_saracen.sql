@@ -27,11 +27,25 @@ CREATE TABLE `authenticator` (
 	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
+CREATE TABLE `post` (
+	`id` text PRIMARY KEY NOT NULL,
+	`title` text,
+	`content` text,
+	`likes` integer DEFAULT 0,
+	`userId` text NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE `session` (
 	`sessionToken` text PRIMARY KEY NOT NULL,
 	`userId` text NOT NULL,
 	`expires` integer NOT NULL,
 	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
+);
+--> statement-breakpoint
+CREATE TABLE `todo` (
+	`id` integer PRIMARY KEY NOT NULL,
+	`text` text NOT NULL,
+	`done` integer DEFAULT false NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE `user` (
@@ -49,6 +63,5 @@ CREATE TABLE `verificationToken` (
 	PRIMARY KEY(`identifier`, `token`)
 );
 --> statement-breakpoint
-DROP TABLE `foo`;--> statement-breakpoint
 CREATE UNIQUE INDEX `authenticator_credentialID_unique` ON `authenticator` (`credentialID`);--> statement-breakpoint
 CREATE UNIQUE INDEX `user_email_unique` ON `user` (`email`);

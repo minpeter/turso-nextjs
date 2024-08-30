@@ -95,3 +95,9 @@ export const posts = sqliteTable("post", {
   likes: integer("likes").default(0),
   userId: text("userId").notNull(),
 });
+
+export const todo = sqliteTable("todo", {
+  id: integer("id").primaryKey(),
+  text: text("text").notNull(),
+  done: integer("done", { mode: "boolean" }).default(false).notNull(),
+});
