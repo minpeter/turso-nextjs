@@ -15,6 +15,13 @@
       "when": 1724297659723,
       "tag": "0001_massive_longshot",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1725014178010,
+      "tag": "0002_bent_xorn",
+      "breakpoints": true
     }
   ]
 }
