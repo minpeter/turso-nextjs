@@ -38,12 +38,27 @@ export function ChallForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        {["name", "description", "category", "author", "flag"].map((field) => (
+        {[
+          "name",
+          "description",
+          "category",
+          "author",
+          "flag",
+          "dynamicImage",
+          "dynamicType",
+        ].map((field) => (
           <FormField
             key={field}
             control={form.control}
             name={
-              field as "name" | "description" | "category" | "author" | "flag"
+              field as
+                | "name"
+                | "description"
+                | "category"
+                | "author"
+                | "flag"
+                | "dynamicImage"
+                | "dynamicType"
             }
             render={({ field }) => (
               <FormItem>
@@ -56,43 +71,52 @@ export function ChallForm() {
             )}
           />
         ))}
-        <FormField
-          control={form.control}
-          name="tiebreakEligible"
-          render={({ field }) => (
-            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
-              <FormControl>
-                <Checkbox
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
-              </FormControl>
-              <div className="space-y-1 leading-none">
-                <FormLabel>
-                  Use different settings for my mobile devices
-                </FormLabel>
-                <FormDescription>
-                  You can manage your mobile notifications in the{" "}
-                  <Link href="/examples/forms">mobile settings</Link> page.
-                </FormDescription>
-              </div>
-            </FormItem>
-          )}
-        />
 
-        <FormField
-          control={form.control}
-          name="sortWeight"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{field.name}</FormLabel>
-              <FormControl>
-                <Input type="number" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        {["tiebreakEligible", "dynamic"].map((field) => (
+          <FormField
+            key={field}
+            control={form.control}
+            name={field as "tiebreakEligible" | "dynamic"}
+            render={({ field }) => (
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel>
+                    {field.name === "tiebreakEligible"
+                      ? "Tiebreak Eligible"
+                      : "Dynamic Challenge"}
+                  </FormLabel>
+                  <FormDescription>
+                    You can manage your mobile notifications in the{" "}
+                    <Link href="/examples/forms">mobile settings</Link> page.
+                  </FormDescription>
+                </div>
+              </FormItem>
+            )}
+          />
+        ))}
+
+        {["sortWeight", "minPoints", "maxPoints"].map((field) => (
+          <FormField
+            key={field}
+            control={form.control}
+            name={field as "sortWeight" | "minPoints" | "maxPoints"}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{field.name}</FormLabel>
+                <FormControl>
+                  <Input type="number" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ))}
 
         <Button type="submit">Submit</Button>
       </form>

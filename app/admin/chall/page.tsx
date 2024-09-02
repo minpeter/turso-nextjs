@@ -12,23 +12,15 @@ export default async function Page() {
         delete challenges here.
       </p>
 
-      <Problem
-        // key={problem.id}
-
-        // problem={problem}
-        problem={{
-          ...data[1],
-          files: [],
-          points: 100,
-          solves: 0,
-        }}
-        // solved={solveIDs.includes(problem.id)}
-        solved={false}
-        // setSolved={setSolved}
-      />
-
-      <div className="space-y-4 whitespace-pre-wrap bg-gray-100 rounded-md p-5 max-h-64 overflow-scroll">
-        {JSON.stringify(data, null, 2)}
+      <div className="flex flex-wrap gap-2">
+        {data.map((problem) => (
+          <div
+            className="space-y-4 whitespace-pre-wrap text-sm bg-gray-100 rounded-md p-4 w-fit"
+            key={problem.id}
+          >
+            {JSON.stringify(problem, null, 2)}
+          </div>
+        ))}
       </div>
       <ChallForm />
     </div>

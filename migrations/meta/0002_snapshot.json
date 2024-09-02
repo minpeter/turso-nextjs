@@ -1,8 +1,8 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "abf59ad3-5950-4b4b-beac-5d672d61fc06",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "44efdb2c-e2de-4d88-a96d-888a48ff3b6e",
+  "prevId": "b7a5b08a-b7c5-4dcf-aab6-ecf1a2dbf618",
   "tables": {
     "account": {
       "name": "account",
@@ -398,6 +398,41 @@
           "type": "integer",
           "primaryKey": false,
           "notNull": true,
+          "autoincrement": false
+        },
+        "minPoints": {
+          "name": "minPoints",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "maxPoints": {
+          "name": "maxPoints",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "dynamic": {
+          "name": "dynamic",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "dynamicImage": {
+          "name": "dynamicImage",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "dynamicType": {
+          "name": "dynamicType",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
           "autoincrement": false
         }
       },

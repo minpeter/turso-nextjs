@@ -25,16 +25,25 @@ export async function createChalls(values: z.infer<typeof formSchema>) {
       return { error: "Unauthorized" };
     }
 
-    await db.insert(challenges).values({
-      id: "your-id-value",
-      name: values.name,
-      description: values.description,
-      category: values.category,
-      author: values.author,
-      flag: values.flag,
-      tiebreakEligible: values.tiebreakEligible,
-      sortWeight: values.sortWeight,
-    });
+    try {
+      await db.insert(challenges).values({
+        name: values.name,
+        description: values.description,
+        category: values.category,
+        author: values.author,
+        flag: values.flag,
+        tiebreakEligible: values.tiebreakEligible,
+        sortWeight: values.sortWeight,
+        minPoints: values.minPoints,
+        maxPoints: values.maxPoints,
+        dynamic: values.dynamic,
+        dynamicImage: values.dynamicImage,
+        dynamicType: values.dynamicType,
+      });
+    } catch (error) {
+      console.error("Error inserting challenge:", error);
+      return { error: "An unexpected error occurred" };
+    }
 
     revalidatePath("/admin/chall");
     return { success: true };

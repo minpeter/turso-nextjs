@@ -5,8 +5,22 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1725262151215,
-      "tag": "0000_first_katie_power",
+      "when": 1725262298091,
+      "tag": "0000_legal_sentinels",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1725263956905,
+      "tag": "0001_lush_gertrude_yorkes",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1725264145596,
+      "tag": "0002_sharp_young_avengers",
       "breakpoints": true
     }
   ]
