@@ -1,20 +1,16 @@
-"use server";
-
 import { getPosts } from "./action";
 import { PostForm } from "./form";
 
 export default async function Page() {
-  const post = await getPosts();
+  const posts = await getPosts();
   return (
     <div>
       <h1>Post</h1>
       <p>
-        This is a page for a post. It will show the post content and allow users
-        to like the post.
+        This is a page for posts. It shows post content and allows users to
+        create new posts.
       </p>
-
-      {JSON.stringify(post)}
-
+      {JSON.stringify(posts)}
       <PostForm />
     </div>
   );

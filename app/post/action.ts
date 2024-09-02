@@ -1,29 +1,38 @@
 "use server";
 
 import db from "@/libs/db/drizzle";
-import { z } from "zod";
-import { formSchema } from "./schema";
 import { posts } from "@/libs/db/schema";
 import { revalidatePath } from "next/cache";
+import { z } from "zod";
+import { formSchema } from "./schema";
+import { auth } from "@/auth";
 
 export const getPosts = async () => {
-  const post = await db.query.posts.findMany();
-
-  console.log(post);
-
-  return post;
+  return await db.query.posts.findMany();
 };
-
 export async function createPost(values: z.infer<typeof formSchema>) {
-  "use server";
+  try {
+    const result = formSchema.safeParse(values);
+    if (!result.success) {
+      return { error: "Invalid data", details: result.error.flatten() };
+    }
 
-  console.log(values);
+    const session = await auth();
 
-  await db.insert(posts).values({
-    userId: "dd",
-    title: values.title,
-    content: values.content,
-  });
+    if (!session?.user?.id) {
+      return { error: "Unauthorized" };
+    }
 
-  revalidatePath("/post");
+    await db.insert(posts).values({
+      userId: session.user.id,
+      title: values.title,
+      content: values.content,
+    });
+
+    revalidatePath("/post");
+    return { success: true };
+  } catch (error) {
+    console.error("Post creation error:", error);
+    return { error: "An unexpected error occurred" };
+  }
 }
