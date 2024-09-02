@@ -42,8 +42,8 @@ CREATE TABLE `session` (
 	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
-CREATE TABLE `todo` (
-	`id` integer PRIMARY KEY NOT NULL,
+CREATE TABLE `todos` (
+	`id` text PRIMARY KEY NOT NULL,
 	`text` text NOT NULL,
 	`done` integer DEFAULT false NOT NULL
 );

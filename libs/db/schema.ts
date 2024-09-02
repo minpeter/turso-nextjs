@@ -96,8 +96,10 @@ export const posts = sqliteTable("post", {
   userId: text("userId").notNull(),
 });
 
-export const todo = sqliteTable("todo", {
-  id: integer("id").primaryKey(),
+export const todos = sqliteTable("todos", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
   text: text("text").notNull(),
   done: integer("done", { mode: "boolean" }).default(false).notNull(),
 });

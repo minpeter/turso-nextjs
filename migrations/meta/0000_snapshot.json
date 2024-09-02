@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "8aefe1cb-8dac-4ebc-8f35-0d0e3b5018a6",
+  "id": "b29c6180-aefa-4f4e-ba12-d4701e049d37",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "account": {
@@ -296,12 +296,12 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "todo": {
-      "name": "todo",
+    "todos": {
+      "name": "todos",
       "columns": {
         "id": {
           "name": "id",
-          "type": "integer",
+          "type": "text",
           "primaryKey": true,
           "notNull": true,
           "autoincrement": false
