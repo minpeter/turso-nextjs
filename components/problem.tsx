@@ -32,13 +32,20 @@ import { ReloadIcon } from "@radix-ui/react-icons";
 export type ProblemProps = {
   id: string;
   name: string;
-  description: string;
+  description: string | null;
   category: string;
-  author: string;
-  files: string[];
+  author: string | null;
+  flag: string;
+  tiebreakEligible: boolean;
+  sortWeight: number;
+  minPoints: number;
+  maxPoints: number;
+  dynamic: boolean;
+  dynamicImage: string | null;
+  dynamicType: string | null;
+
   points: number;
   solves: number;
-  dynamic?: "tcp" | "http" | "static";
 };
 
 export default function Problem({
@@ -54,7 +61,7 @@ export default function Problem({
     console.log("solved", id);
   };
 
-  const isDynamic = problem.dynamic === "tcp" || problem.dynamic === "http";
+  const isDynamic = problem.dynamic;
   const [httpConnection, setHttpConnection] = useState("");
   const [tcpConnection, setTcpConnection] = useState<
     { type: string; command: string }[]
@@ -123,8 +130,12 @@ export default function Problem({
               {problem.category}/{problem.name}
             </h3>
             <div className="flex space-x-2">
-              <Badge>{problem.dynamic}</Badge>
-              {isDynamic && <Badge>{isRunning ? "Running" : "Stopped"}</Badge>}
+              {isDynamic && (
+                <>
+                  <Badge>{problem.dynamicType}</Badge>
+                  <Badge>{isRunning ? "Running" : "Stopped"}</Badge>
+                </>
+              )}
             </div>
           </div>
 
@@ -196,12 +207,12 @@ export default function Problem({
         )}
       </CardContent>
       <CardFooter className="flex justify-between items-center bg-gray-100 py-4 dark:bg-gray-800">
-        <div className="space-y-2">
+        {/* <div className="space-y-2">
           {isFileExists && (
             <>
               <Label htmlFor="downloads">Downloads</Label>
               <div className="flex space-x-2">
-                {problem.files.map((file) => (
+                {problem?.files?.map((file) => (
                   <Link
                     key={file}
                     href="#none"
@@ -213,7 +224,7 @@ export default function Problem({
               </div>
             </>
           )}
-        </div>
+        </div> */}
         {isDynamic &&
           (isRunning ? (
             <TooltipProvider>

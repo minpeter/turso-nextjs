@@ -16,9 +16,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 
-import { useCallback, useState } from "react";
-import { GithubLogin } from "@/api/auth";
-import { toast } from "sonner";
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 

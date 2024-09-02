@@ -62,16 +62,7 @@ export default function Page() {
         return;
       }
 
-      const {
-        data,
-        error,
-        notStarted,
-      }: {
-        // data?: ProblemProps[] | null;
-        data?: any;
-        error?: string | null;
-        notStarted?: boolean;
-      } = await getChalls();
+      const { data, error, notStarted } = await getChalls();
 
       if (error) {
         toast.error(error);
@@ -89,7 +80,7 @@ export default function Page() {
         setIsNull(true);
         return;
       } else {
-        data.forEach((problem: any) => {
+        data.forEach((problem) => {
           if (newCategories[problem.category] === undefined) {
             newCategories[problem.category] = false;
           }
