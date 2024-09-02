@@ -59,7 +59,8 @@ export default function Problem({
   const [tcpConnection, setTcpConnection] = useState<
     { type: string; command: string }[]
   >([]);
-  const isFileExists = problem.files.length > 0;
+  // const isFileExists = problem.files.length > 0;
+  const isFileExists = false;
 
   const [isRunning, setIsRunning] = useState(false);
   const [wait, setWait] = useState(false);

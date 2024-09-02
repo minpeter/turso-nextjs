@@ -6,6 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 
 import { useCallback, useState, useEffect, useMemo } from "react";
+import { getChalls } from "./action";
 
 const loadStates = {
   pending: 0,
@@ -66,10 +67,11 @@ export default function Page() {
         error,
         notStarted,
       }: {
-        data?: ProblemProps[] | null;
+        // data?: ProblemProps[] | null;
+        data?: any;
         error?: string | null;
         notStarted?: boolean;
-      } = {};
+      } = await getChalls();
 
       if (error) {
         toast.error(error);
@@ -87,7 +89,7 @@ export default function Page() {
         setIsNull(true);
         return;
       } else {
-        data.forEach((problem) => {
+        data.forEach((problem: any) => {
           if (newCategories[problem.category] === undefined) {
             newCategories[problem.category] = false;
           }
