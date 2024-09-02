@@ -44,12 +44,16 @@ export type ProblemProps = {
 export default function Problem({
   problem,
   solved,
-  setSolved,
-}: {
+}: // setSolved,
+{
   problem: ProblemProps;
   solved: boolean;
-  setSolved: (id: string) => void;
+  // setSolved: (id: string) => void;
 }) {
+  const setSolved = (id: string) => {
+    console.log("solved", id);
+  };
+
   const isDynamic = problem.dynamic === "tcp" || problem.dynamic === "http";
   const [httpConnection, setHttpConnection] = useState("");
   const [tcpConnection, setTcpConnection] = useState<

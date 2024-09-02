@@ -263,7 +263,7 @@ export default function Page() {
                 key={problem.id}
                 problem={problem}
                 solved={solveIDs.includes(problem.id)}
-                setSolved={setSolved}
+                // setSolved={setSolved}
               />
             );
           })

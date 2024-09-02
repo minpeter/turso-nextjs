@@ -27,25 +27,11 @@ CREATE TABLE `authenticator` (
 	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
-CREATE TABLE `post` (
-	`id` text PRIMARY KEY NOT NULL,
-	`title` text,
-	`content` text,
-	`likes` integer DEFAULT 0,
-	`userId` text NOT NULL
-);
---> statement-breakpoint
 CREATE TABLE `session` (
 	`sessionToken` text PRIMARY KEY NOT NULL,
 	`userId` text NOT NULL,
 	`expires` integer NOT NULL,
 	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
-);
---> statement-breakpoint
-CREATE TABLE `todos` (
-	`id` text PRIMARY KEY NOT NULL,
-	`text` text NOT NULL,
-	`done` integer DEFAULT false NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE `user` (
@@ -61,6 +47,31 @@ CREATE TABLE `verificationToken` (
 	`token` text NOT NULL,
 	`expires` integer NOT NULL,
 	PRIMARY KEY(`identifier`, `token`)
+);
+--> statement-breakpoint
+CREATE TABLE `challenge` (
+	`id` text PRIMARY KEY NOT NULL,
+	`name` text NOT NULL,
+	`description` text NOT NULL,
+	`category` text NOT NULL,
+	`author` text NOT NULL,
+	`flag` text NOT NULL,
+	`tiebreakEligible` integer NOT NULL,
+	`sortWeight` integer NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE `post` (
+	`id` text PRIMARY KEY NOT NULL,
+	`title` text,
+	`content` text,
+	`likes` integer DEFAULT 0,
+	`userId` text NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE `todos` (
+	`id` text PRIMARY KEY NOT NULL,
+	`text` text NOT NULL,
+	`done` integer DEFAULT false NOT NULL
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `authenticator_credentialID_unique` ON `authenticator` (`credentialID`);--> statement-breakpoint

@@ -6,11 +6,13 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { formSchema } from "./schema";
 import { auth } from "@/auth";
+import { challenges } from "@/libs/db/schema/challenges";
 
-export const getPosts = async () => {
-  return await db.query.posts.findMany();
+export const getChalls = async () => {
+  return await db.query.challenges.findMany();
 };
-export async function createPost(values: z.infer<typeof formSchema>) {
+
+export async function createChalls(values: z.infer<typeof formSchema>) {
   try {
     const result = formSchema.safeParse(values);
     if (!result.success) {
@@ -23,13 +25,18 @@ export async function createPost(values: z.infer<typeof formSchema>) {
       return { error: "Unauthorized" };
     }
 
-    await db.insert(posts).values({
-      userId: session.user.id,
-      title: values.title,
-      content: values.content,
+    await db.insert(challenges).values({
+      id: "your-id-value",
+      name: values.name,
+      description: values.description,
+      category: values.category,
+      author: values.author,
+      flag: values.flag,
+      tiebreakEligible: values.tiebreakEligible,
+      sortWeight: values.sortWeight,
     });
 
-    revalidatePath("/post");
+    revalidatePath("/admin/chall");
     return { success: true };
   } catch (error) {
     console.error("Post creation error:", error);

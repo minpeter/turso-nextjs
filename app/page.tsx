@@ -1,6 +1,7 @@
 import { SignIn } from "@/components/auth/signin-button";
 import { auth } from "@/auth";
 import { SignOut } from "@/components/auth/signout-button";
+import Link from "next/link";
 
 export default async function Home() {
   const session = await auth();
@@ -15,6 +16,10 @@ export default async function Home() {
           ? `Signed in as ${session.user.name} (${session.user.email})`
           : "You are not signed in"}
       </i>
+
+      <Link href="admin/chall">Admin chall</Link>
+
+      <Link href="admin/challs">Admin chall (org)</Link>
     </main>
   );
 }

@@ -15,20 +15,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     checkAdmin().then(setAdmin);
   }, []);
 
-  return clicked && admin ? (
-    children
-  ) : (
-    <div className="flex flex-col gap-2 items-center">
-      <NotFound />
-      {admin && (
-        <Button
-          className="w-fit"
-          variant="destructive"
-          onClick={() => setClicked(true)}
-        >
-          Continue, I{"'"}m an admin
-        </Button>
-      )}
-    </div>
-  );
+  return children;
+
+  // return clicked && admin ? (
+  //   children
+  // ) : (
+  //   <div className="flex flex-col gap-2 items-center">
+  //     <NotFound />
+  //     {admin && (
+  //       <Button
+  //         className="w-fit"
+  //         variant="destructive"
+  //         onClick={() => setClicked(true)}
+  //       >
+  //         Continue, I{"'"}m an admin
+  //       </Button>
+  //     )}
+  //   </div>
+  // );
 }
