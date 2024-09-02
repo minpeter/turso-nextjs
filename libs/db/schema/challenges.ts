@@ -6,9 +6,9 @@ export const challenges = sqliteTable("challenge", {
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
   name: text("name").notNull(),
-  description: text("description").notNull(),
+  description: text("description"),
   category: text("category").notNull(),
-  author: text("author").notNull(),
+  author: text("author"),
   flag: text("flag").notNull(),
   tiebreakEligible: integer("tiebreakEligible", { mode: "boolean" }).notNull(),
   sortWeight: integer("sortWeight").notNull(),

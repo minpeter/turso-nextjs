@@ -17,9 +17,7 @@ export default async function Home() {
           : "You are not signed in"}
       </i>
 
-      <Link href="admin/chall">Admin chall</Link>
-
-      <Link href="admin/challs">Admin chall (org)</Link>
+      <Link href="admin/challs">Admin challs</Link>
     </main>
   );
 }
