@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Card,
   CardContent,
@@ -20,25 +18,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { DataTableDemo } from "./solveTable";
+import { auth } from "@/auth";
 
-import { useState, useEffect } from "react";
-
-import { privateProfile } from "@/api/profile";
-
-export default function Page() {
-  const [user, setUser] = useState<any>({});
-
-  useEffect(() => {
-    privateProfile().then((resp: any) => {
-      setUser(resp.data);
-    });
-  }, []);
+export default async function Page() {
+  const session = await auth();
 
   return (
     <div className="w-full md:w-auto flex flex-col gap-4">
       <Card>
         <CardHeader>
-          <CardTitle>{user && user.name ? user.name : "Loading..."}</CardTitle>
+          <CardTitle>{session?.user?.name ?? "(user name)"}</CardTitle>
           <CardDescription>
             This will change the way your name appears on the scoreboard. You
             can change it once every 10 minutes.
@@ -71,7 +60,7 @@ export default function Page() {
               </Label>
               <Input
                 id="name"
-                value={user?.name ?? "(user name)"}
+                value={session?.user?.name ?? "(user name)"}
                 className="col-span-3"
               />
             </div>
@@ -81,7 +70,7 @@ export default function Page() {
               </Label>
               <Input
                 id="email"
-                value={user?.email ?? "(user email)"}
+                value={session?.user?.email ?? "(user email)"}
                 className="col-span-3"
               />
             </div>

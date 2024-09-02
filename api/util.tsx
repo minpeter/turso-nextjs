@@ -1,6 +1,6 @@
 "use client";
 
-import { Relog } from "@/api/auth";
+// import { Relog } from "@/api/auth";
 
 export const handleResponse = ({
   resp,
@@ -62,7 +62,12 @@ export const request = (
   })
     .then((resp) => {
       if (resp.status === 401) {
-        return Relog();
+        // return Relog();
+        return {
+          kind: "badToken",
+          data: null,
+          message: "bad token",
+        };
       }
 
       if (resp.status != 200) {
@@ -86,7 +91,14 @@ export const request = (
           message: "can't find resp.kind",
         };
       }
-      if (resp.kind === "badToken") return Relog();
+      // if (resp.kind === "badToken") return Relog();
+      if (resp.kind === "badToken") {
+        return {
+          kind: "badToken",
+          data: null,
+          message: "bad token",
+        };
+      }
 
       return resp;
     })
